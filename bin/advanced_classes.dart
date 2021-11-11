@@ -1,60 +1,35 @@
 void main(List<String> arguments) {
-  final robin = Robin();
-  robin.fly();
-  robin.layEggs();
+  final original = 'abc';
+  final secret = encode(original);
+  print(secret);
 
-  final platypus = Platypus();
-  platypus.layEggs();
-
-  final calc = Calculator();
-  calc.sum(23, 45);
+  final other = 'abc';
+  print(other.encoded);
+  print(other.encoded.decoded);
 }
 
-abstract class Bird {
-  void fly();
-  void layEggs();
-}
-
-mixin EggLayer {
-  void layEggs() {
-    print('Plop plop');
+String encode(String input) {
+  final output = StringBuffer();
+  for (final codePoint in input.runes) {
+    output.writeCharCode(codePoint + 1);
   }
+  return output.toString();
 }
 
-mixin Flyer {
-  void fly() {
-    print('Swoosh swoosh');
-  }
-}
-
-class Robin extends Bird with EggLayer, Flyer {}
-
-abstract class Animal {
-  bool isAlive = true;
-  void eat();
-  void move();
-  @override
-  String toString() {
-    return "I'm a $runtimeType";
-  }
-}
-
-class Platypus extends Animal with EggLayer {
-  @override
-  void eat() {
-    print('Munch munch');
+extension on String {
+  String get encoded {
+    final output = StringBuffer();
+    for (final codePoint in runes) {
+      output.writeCharCode(codePoint + 1);
+    }
+    return output.toString();
   }
 
-  @override
-  void move() {
-    print('Glide glide');
+  String get decoded {
+    final output = StringBuffer();
+    for (final codePoint in runes) {
+      output.writeCharCode(codePoint - 1);
+    }
+    return output.toString();
   }
 }
-
-mixin Adder {
-  void sum(int a, int b) {
-    print(a + b);
-  }
-}
-
-class Calculator with Adder {}

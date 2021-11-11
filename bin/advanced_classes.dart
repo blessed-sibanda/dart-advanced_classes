@@ -12,6 +12,11 @@ void main(List<String> arguments) {
   final revealed = secret.decoded;
   print(secret);
   print(revealed);
+
+  print(5.cubed);
+
+  final language = ProgrammingLanguage.dart;
+  print(language.isStronglyTyped);
 }
 
 String encode(String input) {
@@ -37,5 +42,25 @@ extension on String {
       output.writeCharCode(codePoint + step);
     }
     return output.toString();
+  }
+}
+
+extension on int {
+  int get cubed => this * this * this;
+}
+
+enum ProgrammingLanguage { dart, swift, javaScript }
+
+extension on ProgrammingLanguage {
+  bool get isStronglyTyped {
+    switch (this) {
+      case ProgrammingLanguage.dart:
+      case ProgrammingLanguage.swift:
+        return true;
+      case ProgrammingLanguage.javaScript:
+        return false;
+      default:
+        throw Exception('Unknown Programming Language $this');
+    }
   }
 }

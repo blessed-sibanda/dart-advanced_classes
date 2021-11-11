@@ -1,3 +1,5 @@
+import 'challenges.dart';
+
 void main(List<String> arguments) {
   String original = 'abc';
   String secret = encode(original);
@@ -17,6 +19,8 @@ void main(List<String> arguments) {
 
   final language = ProgrammingLanguage.dart;
   print(language.isStronglyTyped);
+
+  challenge1();
 }
 
 String encode(String input) {

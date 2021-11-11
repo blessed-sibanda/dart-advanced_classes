@@ -14,6 +14,12 @@ void main(List<String> arguments) {
   final marty = StudentAthlete('Marty', 'McFly');
   print(jessie);
   print(marty);
+
+  print(jessie is Object);
+  print(jessie is Person);
+  print(jessie is Student);
+  print(jessie is SchoolBandMember);
+  print(jessie is! StudentAthlete);
 }
 
 enum Grade { A, B, C, D, F }

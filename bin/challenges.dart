@@ -1,4 +1,4 @@
-void challenge1() {
+void challenges() {
   final willi = Platypus(weight: 1.0);
   final billi = Platypus(weight: 2.4);
   final nilli = Platypus(weight: 2.1);

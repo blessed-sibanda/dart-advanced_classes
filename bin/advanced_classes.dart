@@ -20,7 +20,7 @@ void main(List<String> arguments) {
   final language = ProgrammingLanguage.dart;
   print(language.isStronglyTyped);
 
-  challenge1();
+  challenges();
 }
 
 String encode(String input) {

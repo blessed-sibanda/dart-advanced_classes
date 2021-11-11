@@ -1,57 +1,60 @@
 void main(List<String> arguments) {
-  final DataRepository repository = DataRepository();
-  final temperature = repository.fetchTemperature('Harare');
-  print(temperature);
+  final robin = Robin();
+  robin.fly();
+  robin.layEggs();
 
-  final someClass = SomeClass();
-  print(someClass.myField);
-  someClass.myMethod();
+  final platypus = Platypus();
+  platypus.layEggs();
 
-  final someOtherClass = SomeOtherClass();
-  print(someOtherClass.myField);
-  someOtherClass.myMethod();
-
-  final Bottle bottle = Bottle();
-  bottle.open();
+  final calc = Calculator();
+  calc.sum(23, 45);
 }
 
-abstract class DataRepository {
-  factory DataRepository() => FakeWebServer();
-  double? fetchTemperature(String city);
+abstract class Bird {
+  void fly();
+  void layEggs();
 }
 
-class FakeWebServer implements DataRepository {
-  @override
-  double? fetchTemperature(String city) {
-    return 42.0;
+mixin EggLayer {
+  void layEggs() {
+    print('Plop plop');
   }
 }
 
-class AnotherClass {
-  int myField = 67;
-  void myMethod() => print(myField);
-}
-
-class SomeClass extends AnotherClass {}
-
-class SomeOtherClass implements AnotherClass {
-  @override
-  int myField = 0;
-
-  @override
-  void myMethod() {
-    print('Hello');
+mixin Flyer {
+  void fly() {
+    print('Swoosh swoosh');
   }
 }
 
-abstract class Bottle {
-  factory Bottle() => SodaBottle();
-  void open();
-}
+class Robin extends Bird with EggLayer, Flyer {}
 
-class SodaBottle implements Bottle {
+abstract class Animal {
+  bool isAlive = true;
+  void eat();
+  void move();
   @override
-  void open() {
-    print('Fizz fizz');
+  String toString() {
+    return "I'm a $runtimeType";
   }
 }
+
+class Platypus extends Animal with EggLayer {
+  @override
+  void eat() {
+    print('Munch munch');
+  }
+
+  @override
+  void move() {
+    print('Glide glide');
+  }
+}
+
+mixin Adder {
+  void sum(int a, int b) {
+    print(a + b);
+  }
+}
+
+class Calculator with Adder {}

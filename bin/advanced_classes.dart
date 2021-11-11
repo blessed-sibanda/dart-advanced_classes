@@ -20,6 +20,18 @@ void main(List<String> arguments) {
   print(jessie is Student);
   print(jessie is SchoolBandMember);
   print(jessie is! StudentAthlete);
+
+  final fruit = Fruit('Orange');
+  fruit.describeColor();
+
+  final melon = Melon('Green');
+  melon.describeColor();
+
+  final watermelon = Watermelon('Yellow');
+  watermelon.describeColor();
+
+  final canta = Cantaloupe('Blue');
+  canta.describeColor();
 }
 
 enum Grade { A, B, C, D, F }
@@ -69,4 +81,30 @@ class SomeChild extends SomeParent {
     super.doSomeWork();
     print('child doing some other work');
   }
+}
+
+class Fruit {
+  Fruit(this.color);
+  final String color;
+
+  void describeColor() {
+    print('Fruit of color --> $color');
+  }
+}
+
+class Melon extends Fruit {
+  Melon(String color) : super(color);
+}
+
+class Watermelon extends Melon {
+  Watermelon(String color) : super(color);
+
+  @override
+  void describeColor() {
+    print('Watermelon of color --> $color');
+  }
+}
+
+class Cantaloupe extends Melon {
+  Cantaloupe(String color) : super(color);
 }

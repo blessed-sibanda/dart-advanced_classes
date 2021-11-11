@@ -1,11 +1,17 @@
 void main(List<String> arguments) {
-  final original = 'abc';
-  final secret = encode(original);
+  String original = 'abc';
+  String secret = encode(original);
   print(secret);
 
   final other = 'abc';
   print(other.encoded);
   print(other.encoded.decoded);
+
+  original = 'I like extensions!';
+  secret = original.encoded;
+  final revealed = secret.decoded;
+  print(secret);
+  print(revealed);
 }
 
 String encode(String input) {
@@ -18,17 +24,17 @@ String encode(String input) {
 
 extension on String {
   String get encoded {
-    final output = StringBuffer();
-    for (final codePoint in runes) {
-      output.writeCharCode(codePoint + 1);
-    }
-    return output.toString();
+    return _code(1);
   }
 
   String get decoded {
+    return _code(-1);
+  }
+
+  String _code(int step) {
     final output = StringBuffer();
     for (final codePoint in runes) {
-      output.writeCharCode(codePoint - 1);
+      output.writeCharCode(codePoint + step);
     }
     return output.toString();
   }
